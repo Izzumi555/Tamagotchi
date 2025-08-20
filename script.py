@@ -24,6 +24,14 @@ class Tamagotchi:
         print(f"Energy: {self.energy}")
         print(f"Coins: {self.money}")
 
+    def needs(self):
+        if self.health >= 50 and self.hunger >= 50 and self.energy >= 50:
+            return f"Everything is fine with {self.name}!!"
+        elif self.health >= 50 and self.hunger >= 50 and self.energy <= 50:
+            return f"You should go play with {self.name}!"
+        elif self.health >= 50 and self.hunger <= 50 and self.energy <= 50:
+            return f"You should feed and play with {self.name}!!"
+
     def feed(self):
         if self.hunger <= 90:
             print(f"You fed {self.name}.")
@@ -105,3 +113,66 @@ class MiniGames:
 
     def coinFlip(self):
         pass
+
+class Game:
+    def __init__(self):
+        self.pet = None
+
+    def clearScreen(self):
+        sys.stdout.write("\0333[H\0333[J")
+        sys.stdout.flush
+
+    def pause(self, seconds=5):
+        time.sleep(seconds)
+    
+    def main(self):
+        self.clearScreen()
+        print("====== Tamagotchi ======")
+        if self.pet == None:
+            self.pet_name = input("Enter your pets name: ")
+            self.pet = Tamagotchi(self.pet_name)
+        else:
+            while True:
+                self.clear_screen()
+                print("=== MENU ===")
+                print("1) Show stats")
+                print("2) Show needs")
+                print("3) Feed")
+                print("4) Play")
+                print("5) Quit")
+
+                try:
+                    choice = int(input("$ "))
+                except ValueError:
+                    print("\nInvalid choice. Please enter a number.")
+                    self.pause(2)
+                    continue
+
+                if choice == 1:
+                    self.clear_screen()
+                    print(self.pet)
+                    self.pause()
+                elif choice == 2:
+                    self.clear_screen()
+                    print(self.pet.needs())
+                    self.pause(3)
+                elif choice == 3:
+                    self.clear_screen()
+                    self.pet.feed()
+                    self.pause(3)
+                elif choice == 4:
+                    self.clear_screen()
+                    self.pet.play()
+                    self.pause(3)
+                elif choice == 5:
+                    self.clear_screen()
+                    print(f"Goodbye! {self.pet.name} will miss you!")
+                    self.pause(1.5)
+                    break
+                else:
+                    print("\nInvalid option, please choose between 1 and 5.")
+                    self.pause()
+
+
+if __name__ == '__main__':
+    Game().main()
