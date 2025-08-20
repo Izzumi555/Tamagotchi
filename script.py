@@ -13,6 +13,7 @@ class Tamagotchi:
         self.energy = 50
         self.alive = True
         self.sick = False
+        self.coins = 0
 
     def stats(self):
         print(f"Stats for {self.name}: ")
@@ -21,6 +22,7 @@ class Tamagotchi:
         print(f"Dirty: {self.dirty}")
         print(f"Health: {self.health}")
         print(f"Energy: {self.energy}")
+        print(f"Coins: {self.money}")
 
     def feed(self):
         if self.hunger <= 90:
@@ -84,3 +86,22 @@ class Tamagotchi:
         else:
             print(f"{self.name} is tired right now.")
 
+class MiniGames:
+    def __init__(self):
+        self.coins = 0
+
+    def numberGuessing(self):
+        number = random.randint(1, 10)
+        guess = int(input("Enter a number between 1 - 10: "))
+        try:
+            if guess == number:
+                print("Correct!!")
+                print("Coins +5")
+                self.coins += 5
+            else:
+                print("Incorrect.")
+        except ValueError:
+            print("Enter a number in a range 1 to 10.")
+
+    def coinFlip(self):
+        pass
