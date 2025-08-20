@@ -133,45 +133,49 @@ class Game:
             self.pet = Tamagotchi(self.pet_name)
         else:
             while True:
-                self.clear_screen()
-                print("=== MENU ===")
-                print("1) Show stats")
-                print("2) Show needs")
-                print("3) Feed")
-                print("4) Play")
-                print("5) Quit")
-
-                try:
-                    choice = int(input("$ "))
-                except ValueError:
-                    print("\nInvalid choice. Please enter a number.")
-                    self.pause(2)
-                    continue
-
-                if choice == 1:
-                    self.clear_screen()
-                    print(self.pet)
-                    self.pause()
-                elif choice == 2:
-                    self.clear_screen()
-                    print(self.pet.needs())
-                    self.pause(3)
-                elif choice == 3:
-                    self.clear_screen()
-                    self.pet.feed()
-                    self.pause(3)
-                elif choice == 4:
-                    self.clear_screen()
-                    self.pet.play()
-                    self.pause(3)
-                elif choice == 5:
-                    self.clear_screen()
-                    print(f"Goodbye! {self.pet.name} will miss you!")
-                    self.pause(1.5)
-                    break
+                if self.pet == None:
+                    self.pet_name = input("Enter your pets name: ")
+                    self.pet = Tamagotchi(self.pet_name)
                 else:
-                    print("\nInvalid option, please choose between 1 and 5.")
-                    self.pause()
+                    self.clear_screen()
+                    print("=== MENU ===")
+                    print("1) Show stats")
+                    print("2) Show needs")
+                    print("3) Feed")
+                    print("4) Play")
+                    print("5) Quit")
+
+                    try:
+                        choice = int(input("$ "))
+                    except ValueError:
+                        print("\nInvalid choice. Please enter a number.")
+                        self.pause(2)
+                        continue
+
+                    if choice == 1:
+                        self.clear_screen()
+                        print(self.pet)
+                        self.pause()
+                    elif choice == 2:
+                        self.clear_screen()
+                        print(self.pet.needs())
+                        self.pause(3)
+                    elif choice == 3:
+                        self.clear_screen()
+                        self.pet.feed()
+                        self.pause(3)
+                    elif choice == 4:
+                        self.clear_screen()
+                        self.pet.play()
+                        self.pause(3)
+                    elif choice == 5:
+                        self.clear_screen()
+                        print(f"Goodbye! {self.pet.name} will miss you!")
+                        self.pause(1.5)
+                        break
+                    else:
+                        print("\nInvalid option, please choose between 1 and 5.")
+                        self.pause()
 
 
 if __name__ == '__main__':
