@@ -76,4 +76,11 @@ class Tamagotchi:
         else:
             print(f"{self.name} can't go to sleep beacuse lights are turn on!!!")
 
-    
+    def play(self):
+        if self.energy >= 20:
+            print(f"You played some games with {self.name}")
+            print(f"Energy -15")
+            self.energy -= 15
+        else:
+            print(f"{self.name} is tired right now.")
+
