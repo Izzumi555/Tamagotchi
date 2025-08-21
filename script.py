@@ -14,6 +14,7 @@ class Tamagotchi:
         self.alive = True
         self.sick = False
         self.coins = 0
+        self.inventory = []
 
     def __repr__(self):
         return(f"Stats for {self.name}: \nName: {self.name} \nHunger: {self.hunger} \nDirty: {self.dirty} \nHealth: {self.health} \nEnergy: {self.energy} \nCoins: {self.coins}")
@@ -56,6 +57,7 @@ class Tamagotchi:
         if self.sick:
             print(f"You've healed {self.name}.")
             print(f"Health +15")
+            self.health += 15
             self.sick = False
         else:
             print(f"{self.name} does not really need health care right now <3")
@@ -83,7 +85,9 @@ class Tamagotchi:
         if self.energy >= 20:
             print(f"You played some games with {self.name}")
             print(f"Energy -15")
+            print(f"Hunger +8")
             self.energy -= 15
+            self.hunger += 8
         else:
             print(f"{self.name} is tired right now.")
 
@@ -117,6 +121,13 @@ class MiniGames:
         else:
             print("Incorrect.")
             time.sleep(2)
+
+class Shop:
+    def __init__(self, pet):
+        self.pet = pet
+    
+    def items(self):
+        pass
 
 class Game:
     def __init__(self):
